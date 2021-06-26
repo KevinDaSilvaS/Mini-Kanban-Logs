@@ -1,0 +1,986 @@
+{
+ "meta": {
+  "version": "1",
+  "type": "dashboard",
+  "name": "Mini-Kanban-Project-Template",
+  "description": "template created from dashboard: Mini-Kanban-Project"
+ },
+ "content": {
+  "data": {
+   "type": "dashboard",
+   "attributes": {
+    "name": "Mini-Kanban-Project",
+    "description": ""
+   },
+   "relationships": {
+    "label": {
+     "data": []
+    },
+    "cell": {
+     "data": [
+      {
+       "type": "cell",
+       "id": "07baccab6fbe5000"
+      },
+      {
+       "type": "cell",
+       "id": "07bacd53f7be5000"
+      },
+      {
+       "type": "cell",
+       "id": "07bacdc92d7e5000"
+      },
+      {
+       "type": "cell",
+       "id": "07bace30717e5000"
+      },
+      {
+       "type": "cell",
+       "id": "07baced7d1fe5000"
+      },
+      {
+       "type": "cell",
+       "id": "07bacf0736fe5000"
+      },
+      {
+       "type": "cell",
+       "id": "07bacfaa8c3e5000"
+      },
+      {
+       "type": "cell",
+       "id": "07bad0d14cfe5000"
+      },
+      {
+       "type": "cell",
+       "id": "07bad12cbe7e5000"
+      }
+     ]
+    },
+    "variable": {
+     "data": []
+    }
+   }
+  },
+  "included": [
+   {
+    "id": "07baccab6fbe5000",
+    "type": "cell",
+    "attributes": {
+     "x": 0,
+     "y": 0,
+     "w": 4,
+     "h": 4
+    },
+    "relationships": {
+     "view": {
+      "data": {
+       "type": "view",
+       "id": "07baccab6fbe5000"
+      }
+     }
+    }
+   },
+   {
+    "id": "07bacd53f7be5000",
+    "type": "cell",
+    "attributes": {
+     "x": 4,
+     "y": 0,
+     "w": 4,
+     "h": 4
+    },
+    "relationships": {
+     "view": {
+      "data": {
+       "type": "view",
+       "id": "07bacd53f7be5000"
+      }
+     }
+    }
+   },
+   {
+    "id": "07bacdc92d7e5000",
+    "type": "cell",
+    "attributes": {
+     "x": 8,
+     "y": 0,
+     "w": 4,
+     "h": 4
+    },
+    "relationships": {
+     "view": {
+      "data": {
+       "type": "view",
+       "id": "07bacdc92d7e5000"
+      }
+     }
+    }
+   },
+   {
+    "id": "07bace30717e5000",
+    "type": "cell",
+    "attributes": {
+     "x": 0,
+     "y": 4,
+     "w": 4,
+     "h": 4
+    },
+    "relationships": {
+     "view": {
+      "data": {
+       "type": "view",
+       "id": "07bace30717e5000"
+      }
+     }
+    }
+   },
+   {
+    "id": "07baced7d1fe5000",
+    "type": "cell",
+    "attributes": {
+     "x": 4,
+     "y": 4,
+     "w": 4,
+     "h": 4
+    },
+    "relationships": {
+     "view": {
+      "data": {
+       "type": "view",
+       "id": "07baced7d1fe5000"
+      }
+     }
+    }
+   },
+   {
+    "id": "07bacf0736fe5000",
+    "type": "cell",
+    "attributes": {
+     "x": 8,
+     "y": 4,
+     "w": 4,
+     "h": 4
+    },
+    "relationships": {
+     "view": {
+      "data": {
+       "type": "view",
+       "id": "07bacf0736fe5000"
+      }
+     }
+    }
+   },
+   {
+    "id": "07bacfaa8c3e5000",
+    "type": "cell",
+    "attributes": {
+     "x": 8,
+     "y": 8,
+     "w": 4,
+     "h": 4
+    },
+    "relationships": {
+     "view": {
+      "data": {
+       "type": "view",
+       "id": "07bacfaa8c3e5000"
+      }
+     }
+    }
+   },
+   {
+    "id": "07bad0d14cfe5000",
+    "type": "cell",
+    "attributes": {
+     "x": 6,
+     "y": 8,
+     "w": 2,
+     "h": 4
+    },
+    "relationships": {
+     "view": {
+      "data": {
+       "type": "view",
+       "id": "07bad0d14cfe5000"
+      }
+     }
+    }
+   },
+   {
+    "id": "07bad12cbe7e5000",
+    "type": "cell",
+    "attributes": {
+     "x": 0,
+     "y": 8,
+     "w": 6,
+     "h": 4
+    },
+    "relationships": {
+     "view": {
+      "data": {
+       "type": "view",
+       "id": "07bad12cbe7e5000"
+      }
+     }
+    }
+   },
+   {
+    "type": "view",
+    "id": "07baccab6fbe5000",
+    "attributes": {
+     "name": "Mini-Kanban-Histogram",
+     "properties": {
+      "shape": "chronograf-v2",
+      "type": "histogram",
+      "queries": [
+       {
+        "text": "from(bucket: \"kevinsbucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"amqp_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] == \"code\")\n  |> filter(fn: (r) => r[\"service\"] == \"Mini-Kanban\")\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\n  |> yield(name: \"last\")",
+        "editMode": "advanced",
+        "name": "",
+        "builderConfig": {
+         "buckets": [],
+         "tags": [
+          {
+           "key": "_measurement",
+           "values": [],
+           "aggregateFunctionType": "filter"
+          }
+         ],
+         "functions": [
+          {
+           "name": "mean"
+          }
+         ],
+         "aggregateWindow": {
+          "period": "auto",
+          "fillValues": false
+         }
+        }
+       }
+      ],
+      "colors": [
+       {
+        "id": "4d58a563-78f1-4522-b38e-b66b6df61e2d",
+        "type": "scale",
+        "hex": "#31C0F6",
+        "name": "Nineteen Eighty Four",
+        "value": 0
+       },
+       {
+        "id": "41c11d98-7b44-4055-8352-d394f8d48361",
+        "type": "scale",
+        "hex": "#A500A5",
+        "name": "Nineteen Eighty Four",
+        "value": 0
+       },
+       {
+        "id": "e87300b6-96d2-4a2f-8080-ebb20ee7306d",
+        "type": "scale",
+        "hex": "#FF7E27",
+        "name": "Nineteen Eighty Four",
+        "value": 0
+       }
+      ],
+      "xColumn": "_value",
+      "fillColumns": [
+       "_start",
+       "host",
+       "method",
+       "service",
+       "url"
+      ],
+      "xAxisLabel": "",
+      "position": "stacked",
+      "binCount": 30,
+      "note": "",
+      "showNoteWhenEmpty": false,
+      "legendColorizeRows": true,
+      "legendOpacity": 1,
+      "legendOrientationThreshold": 100000000
+     }
+    }
+   },
+   {
+    "type": "view",
+    "id": "07bacd53f7be5000",
+    "attributes": {
+     "name": "Mini-Kanban-Heatmap",
+     "properties": {
+      "shape": "chronograf-v2",
+      "type": "heatmap",
+      "queries": [
+       {
+        "text": "from(bucket: \"kevinsbucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"amqp_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] == \"code\")\n  |> filter(fn: (r) => r[\"service\"] == \"Mini-Kanban\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+        "editMode": "advanced",
+        "name": "",
+        "builderConfig": {
+         "buckets": [],
+         "tags": [
+          {
+           "key": "_measurement",
+           "values": [],
+           "aggregateFunctionType": "filter"
+          }
+         ],
+         "functions": [
+          {
+           "name": "mean"
+          }
+         ],
+         "aggregateWindow": {
+          "period": "auto",
+          "fillValues": false
+         }
+        }
+       }
+      ],
+      "colors": [
+       "#000004",
+       "#110a30",
+       "#320a5e",
+       "#57106e",
+       "#781c6d",
+       "#9a2865",
+       "#bc3754",
+       "#d84c3e",
+       "#ed6925",
+       "#f98e09",
+       "#fbb61a",
+       "#f4df53"
+      ],
+      "binSize": 10,
+      "xColumn": "_time",
+      "generateXAxisTicks": [],
+      "xTotalTicks": 0,
+      "xTickStart": 0,
+      "xTickStep": 0,
+      "yColumn": "_value",
+      "generateYAxisTicks": [],
+      "yTotalTicks": 0,
+      "yTickStart": 0,
+      "yTickStep": 0,
+      "xAxisLabel": "",
+      "yAxisLabel": "",
+      "xPrefix": "",
+      "xSuffix": "",
+      "yPrefix": "",
+      "ySuffix": "",
+      "note": "",
+      "showNoteWhenEmpty": false,
+      "timeFormat": "",
+      "legendColorizeRows": true,
+      "legendOpacity": 1,
+      "legendOrientationThreshold": 100000000
+     }
+    }
+   },
+   {
+    "type": "view",
+    "id": "07bacdc92d7e5000",
+    "attributes": {
+     "name": "Scatter-Mini-Kanban",
+     "properties": {
+      "shape": "chronograf-v2",
+      "type": "scatter",
+      "queries": [
+       {
+        "text": "from(bucket: \"kevinsbucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"amqp_consumer\")\n  |> filter(fn: (r) => r[\"service\"] == \"Mini-Kanban\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+        "editMode": "advanced",
+        "name": "",
+        "builderConfig": {
+         "buckets": [],
+         "tags": [
+          {
+           "key": "_measurement",
+           "values": [],
+           "aggregateFunctionType": "filter"
+          }
+         ],
+         "functions": [
+          {
+           "name": "mean"
+          }
+         ],
+         "aggregateWindow": {
+          "period": "auto",
+          "fillValues": false
+         }
+        }
+       }
+      ],
+      "colors": [
+       "#31C0F6",
+       "#BC00B8",
+       "#FF7E27"
+      ],
+      "fillColumns": [
+       "_start",
+       "host",
+       "method",
+       "service",
+       "url"
+      ],
+      "symbolColumns": [
+       "_start",
+       "host",
+       "method",
+       "service",
+       "url"
+      ],
+      "xColumn": "_time",
+      "generateXAxisTicks": [],
+      "xTotalTicks": 0,
+      "xTickStart": 0,
+      "xTickStep": 0,
+      "yColumn": "_value",
+      "generateYAxisTicks": [],
+      "yTotalTicks": 0,
+      "yTickStart": 0,
+      "yTickStep": 0,
+      "xAxisLabel": "",
+      "yAxisLabel": "",
+      "xPrefix": "",
+      "xSuffix": "",
+      "yPrefix": "",
+      "ySuffix": "",
+      "note": "",
+      "showNoteWhenEmpty": false,
+      "timeFormat": "",
+      "legendColorizeRows": true,
+      "legendOpacity": 1,
+      "legendOrientationThreshold": 100000000
+     }
+    }
+   },
+   {
+    "type": "view",
+    "id": "07bace30717e5000",
+    "attributes": {
+     "name": "Histogram-Comments-Kanban",
+     "properties": {
+      "shape": "chronograf-v2",
+      "type": "histogram",
+      "queries": [
+       {
+        "text": "from(bucket: \"kevinsbucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"amqp_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] == \"code\")\n  |> filter(fn: (r) => r[\"service\"] == \"Comments-Kanban\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+        "editMode": "advanced",
+        "name": "",
+        "builderConfig": {
+         "buckets": [],
+         "tags": [
+          {
+           "key": "_measurement",
+           "values": [],
+           "aggregateFunctionType": "filter"
+          }
+         ],
+         "functions": [
+          {
+           "name": "mean"
+          }
+         ],
+         "aggregateWindow": {
+          "period": "auto",
+          "fillValues": false
+         }
+        }
+       }
+      ],
+      "colors": [
+       {
+        "id": "4d58a563-78f1-4522-b38e-b66b6df61e2d",
+        "type": "scale",
+        "hex": "#31C0F6",
+        "name": "Nineteen Eighty Four",
+        "value": 0
+       },
+       {
+        "id": "41c11d98-7b44-4055-8352-d394f8d48361",
+        "type": "scale",
+        "hex": "#A500A5",
+        "name": "Nineteen Eighty Four",
+        "value": 0
+       },
+       {
+        "id": "e87300b6-96d2-4a2f-8080-ebb20ee7306d",
+        "type": "scale",
+        "hex": "#FF7E27",
+        "name": "Nineteen Eighty Four",
+        "value": 0
+       }
+      ],
+      "xColumn": "_value",
+      "fillColumns": [
+       "_start",
+       "host",
+       "method",
+       "service",
+       "url"
+      ],
+      "xAxisLabel": "",
+      "position": "stacked",
+      "binCount": 30,
+      "note": "",
+      "showNoteWhenEmpty": false,
+      "legendColorizeRows": true,
+      "legendOpacity": 1,
+      "legendOrientationThreshold": 100000000
+     }
+    }
+   },
+   {
+    "type": "view",
+    "id": "07baced7d1fe5000",
+    "attributes": {
+     "name": "Heatmap-Comments-Kanban",
+     "properties": {
+      "shape": "chronograf-v2",
+      "type": "heatmap",
+      "queries": [
+       {
+        "text": "from(bucket: \"kevinsbucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"amqp_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] == \"code\")\n  |> filter(fn: (r) => r[\"service\"] == \"Comments-Kanban\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+        "editMode": "advanced",
+        "name": "",
+        "builderConfig": {
+         "buckets": [],
+         "tags": [
+          {
+           "key": "_measurement",
+           "values": [],
+           "aggregateFunctionType": "filter"
+          }
+         ],
+         "functions": [
+          {
+           "name": "mean"
+          }
+         ],
+         "aggregateWindow": {
+          "period": "auto",
+          "fillValues": false
+         }
+        }
+       }
+      ],
+      "colors": [
+       "#000004",
+       "#110a30",
+       "#320a5e",
+       "#57106e",
+       "#781c6d",
+       "#9a2865",
+       "#bc3754",
+       "#d84c3e",
+       "#ed6925",
+       "#f98e09",
+       "#fbb61a",
+       "#f4df53"
+      ],
+      "binSize": 10,
+      "xColumn": "_time",
+      "generateXAxisTicks": [],
+      "xTotalTicks": 0,
+      "xTickStart": 0,
+      "xTickStep": 0,
+      "yColumn": "_value",
+      "generateYAxisTicks": [],
+      "yTotalTicks": 0,
+      "yTickStart": 0,
+      "yTickStep": 0,
+      "xAxisLabel": "",
+      "yAxisLabel": "",
+      "xPrefix": "",
+      "xSuffix": "",
+      "yPrefix": "",
+      "ySuffix": "",
+      "note": "",
+      "showNoteWhenEmpty": false,
+      "timeFormat": "",
+      "legendColorizeRows": true,
+      "legendOpacity": 1,
+      "legendOrientationThreshold": 100000000
+     }
+    }
+   },
+   {
+    "type": "view",
+    "id": "07bacf0736fe5000",
+    "attributes": {
+     "name": "Scatter-Comments-Kanban",
+     "properties": {
+      "shape": "chronograf-v2",
+      "type": "scatter",
+      "queries": [
+       {
+        "text": "from(bucket: \"kevinsbucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"amqp_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] == \"code\")\n  |> filter(fn: (r) => r[\"service\"] == \"Comments-Kanban\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+        "editMode": "advanced",
+        "name": "",
+        "builderConfig": {
+         "buckets": [],
+         "tags": [
+          {
+           "key": "_measurement",
+           "values": [],
+           "aggregateFunctionType": "filter"
+          }
+         ],
+         "functions": [
+          {
+           "name": "mean"
+          }
+         ],
+         "aggregateWindow": {
+          "period": "auto",
+          "fillValues": false
+         }
+        }
+       }
+      ],
+      "colors": [
+       "#31C0F6",
+       "#BC00B8",
+       "#FF7E27"
+      ],
+      "fillColumns": [
+       "_start",
+       "host",
+       "method",
+       "service",
+       "url"
+      ],
+      "symbolColumns": [
+       "_start",
+       "host",
+       "method",
+       "service",
+       "url"
+      ],
+      "xColumn": "_time",
+      "generateXAxisTicks": [],
+      "xTotalTicks": 0,
+      "xTickStart": 0,
+      "xTickStep": 0,
+      "yColumn": "_value",
+      "generateYAxisTicks": [],
+      "yTotalTicks": 0,
+      "yTickStart": 0,
+      "yTickStep": 0,
+      "xAxisLabel": "",
+      "yAxisLabel": "",
+      "xPrefix": "",
+      "xSuffix": "",
+      "yPrefix": "",
+      "ySuffix": "",
+      "note": "",
+      "showNoteWhenEmpty": false,
+      "timeFormat": "",
+      "legendColorizeRows": true,
+      "legendOpacity": 1,
+      "legendOrientationThreshold": 100000000
+     }
+    }
+   },
+   {
+    "type": "view",
+    "id": "07bacfaa8c3e5000",
+    "attributes": {
+     "name": "All-Services-Band",
+     "properties": {
+      "shape": "chronograf-v2",
+      "queries": [
+       {
+        "text": "from(bucket: \"kevinsbucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"amqp_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] == \"code\")\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\n  |> yield(name: \"last\")",
+        "editMode": "advanced",
+        "name": "",
+        "builderConfig": {
+         "buckets": [],
+         "tags": [
+          {
+           "key": "_measurement",
+           "values": [],
+           "aggregateFunctionType": "filter"
+          }
+         ],
+         "functions": [
+          {
+           "name": "mean"
+          }
+         ],
+         "aggregateWindow": {
+          "period": "auto",
+          "fillValues": false
+         }
+        }
+       }
+      ],
+      "axes": {
+       "x": {
+        "bounds": [
+         "",
+         ""
+        ],
+        "label": "",
+        "prefix": "",
+        "suffix": "",
+        "base": "",
+        "scale": "linear"
+       },
+       "y": {
+        "bounds": [
+         "",
+         ""
+        ],
+        "label": "",
+        "prefix": "",
+        "suffix": "",
+        "base": "",
+        "scale": "linear"
+       }
+      },
+      "type": "band",
+      "legend": {},
+      "geom": "line",
+      "colors": [
+       {
+        "id": "4d58a563-78f1-4522-b38e-b66b6df61e2d",
+        "type": "scale",
+        "hex": "#31C0F6",
+        "name": "Nineteen Eighty Four",
+        "value": 0
+       },
+       {
+        "id": "41c11d98-7b44-4055-8352-d394f8d48361",
+        "type": "scale",
+        "hex": "#A500A5",
+        "name": "Nineteen Eighty Four",
+        "value": 0
+       },
+       {
+        "id": "e87300b6-96d2-4a2f-8080-ebb20ee7306d",
+        "type": "scale",
+        "hex": "#FF7E27",
+        "name": "Nineteen Eighty Four",
+        "value": 0
+       }
+      ],
+      "note": "",
+      "showNoteWhenEmpty": false,
+      "timeFormat": "",
+      "hoverDimension": "auto",
+      "xColumn": "_time",
+      "generateXAxisTicks": [],
+      "xTotalTicks": 0,
+      "xTickStart": 0,
+      "xTickStep": 0,
+      "yColumn": "_value",
+      "generateYAxisTicks": [],
+      "yTotalTicks": 0,
+      "yTickStart": 0,
+      "yTickStep": 0,
+      "upperColumn": "",
+      "mainColumn": "last",
+      "lowerColumn": "",
+      "legendColorizeRows": true,
+      "legendOpacity": 1,
+      "legendOrientationThreshold": 100000000
+     }
+    }
+   },
+   {
+    "type": "view",
+    "id": "07bad0d14cfe5000",
+    "attributes": {
+     "name": "All-Services-Heatmap",
+     "properties": {
+      "shape": "chronograf-v2",
+      "type": "heatmap",
+      "queries": [
+       {
+        "text": "from(bucket: \"kevinsbucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"amqp_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] == \"code\")\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\n  |> yield(name: \"last\")",
+        "editMode": "advanced",
+        "name": "",
+        "builderConfig": {
+         "buckets": [],
+         "tags": [
+          {
+           "key": "_measurement",
+           "values": [],
+           "aggregateFunctionType": "filter"
+          }
+         ],
+         "functions": [
+          {
+           "name": "mean"
+          }
+         ],
+         "aggregateWindow": {
+          "period": "auto",
+          "fillValues": false
+         }
+        }
+       }
+      ],
+      "colors": [
+       "#000004",
+       "#110a30",
+       "#320a5e",
+       "#57106e",
+       "#781c6d",
+       "#9a2865",
+       "#bc3754",
+       "#d84c3e",
+       "#ed6925",
+       "#f98e09",
+       "#fbb61a",
+       "#f4df53"
+      ],
+      "binSize": 10,
+      "xColumn": "_time",
+      "generateXAxisTicks": [],
+      "xTotalTicks": 0,
+      "xTickStart": 0,
+      "xTickStep": 0,
+      "yColumn": "_value",
+      "generateYAxisTicks": [],
+      "yTotalTicks": 0,
+      "yTickStart": 0,
+      "yTickStep": 0,
+      "xAxisLabel": "",
+      "yAxisLabel": "",
+      "xPrefix": "",
+      "xSuffix": "",
+      "yPrefix": "",
+      "ySuffix": "",
+      "note": "",
+      "showNoteWhenEmpty": false,
+      "timeFormat": "",
+      "legendColorizeRows": true,
+      "legendOpacity": 1,
+      "legendOrientationThreshold": 100000000
+     }
+    }
+   },
+   {
+    "type": "view",
+    "id": "07bad12cbe7e5000",
+    "attributes": {
+     "name": "All-Services-Table",
+     "properties": {
+      "shape": "chronograf-v2",
+      "type": "table",
+      "queries": [
+       {
+        "text": "from(bucket: \"kevinsbucket\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"amqp_consumer\")\n  |> filter(fn: (r) => r[\"_field\"] == \"code\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+        "editMode": "advanced",
+        "name": "",
+        "builderConfig": {
+         "buckets": [],
+         "tags": [
+          {
+           "key": "_measurement",
+           "values": [],
+           "aggregateFunctionType": "filter"
+          }
+         ],
+         "functions": [
+          {
+           "name": "mean"
+          }
+         ],
+         "aggregateWindow": {
+          "period": "auto",
+          "fillValues": false
+         }
+        }
+       }
+      ],
+      "colors": [
+       {
+        "id": "base",
+        "type": "text",
+        "hex": "#ffffff",
+        "name": "white",
+        "value": 0
+       }
+      ],
+      "tableOptions": {
+       "verticalTimeAxis": true,
+       "sortBy": {
+        "internalName": "",
+        "displayName": "",
+        "visible": false
+       },
+       "wrapping": "",
+       "fixFirstColumn": false
+      },
+      "fieldOptions": [
+       {
+        "internalName": "_start",
+        "displayName": "_start",
+        "visible": true
+       },
+       {
+        "internalName": "_stop",
+        "displayName": "_stop",
+        "visible": false
+       },
+       {
+        "internalName": "_time",
+        "displayName": "_time",
+        "visible": true
+       },
+       {
+        "internalName": "_value",
+        "displayName": "_value",
+        "visible": true
+       },
+       {
+        "internalName": "_field",
+        "displayName": "_field",
+        "visible": false
+       },
+       {
+        "internalName": "_measurement",
+        "displayName": "_measurement",
+        "visible": false
+       },
+       {
+        "internalName": "body",
+        "displayName": "body",
+        "visible": true
+       },
+       {
+        "internalName": "host",
+        "displayName": "host",
+        "visible": true
+       },
+       {
+        "internalName": "method",
+        "displayName": "method",
+        "visible": true
+       },
+       {
+        "internalName": "service",
+        "displayName": "service",
+        "visible": true
+       },
+       {
+        "internalName": "url",
+        "displayName": "url",
+        "visible": true
+       }
+      ],
+      "timeFormat": "YYYY-MM-DD HH:mm:ss",
+      "decimalPlaces": {
+       "isEnforced": false,
+       "digits": 2
+      },
+      "note": "",
+      "showNoteWhenEmpty": false
+     }
+    }
+   }
+  ]
+ },
+ "labels": []
+}
