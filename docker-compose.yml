@@ -19,8 +19,16 @@ services:
         
   telegraf:
       image: telegraf
-      env_file:
-        - ./.env
+      environment:
+        - BUCKET_NAME=${BUCKET_NAME}
+        - ORG=${ORG}
+        - TOKEN=${TOKEN}
+        - HOST=${HOST}
+        - RABBIT_USERNAME=${RABBIT_USERNAME}
+        - RABBIT_PASSWORD=${RABBIT_PASSWORD}
+        - RABBIT_HOST=${RABBIT_HOST}
+        - RABBIT_EXCHANGE=${RABBIT_EXCHANGE}
+        - QUEUE=${QUEUE}
       volumes:
         - ./my-conf.conf:/etc/telegraf/telegraf.conf
       networks:
