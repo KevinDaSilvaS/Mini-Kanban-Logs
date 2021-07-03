@@ -7,6 +7,7 @@ services:
         - "${INFLUX_PORT}:8086"
       networks:
         - logs
+        - kanban
        
   influxdb_cli:
       image: influxdb
@@ -47,5 +48,5 @@ networks:
   kanban:
     driver: overlay
     external: 
-      name: eg-gateway_kanban
+      name: krakend-gateway_kanban
             
